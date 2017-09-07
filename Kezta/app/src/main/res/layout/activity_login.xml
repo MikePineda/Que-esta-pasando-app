@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="123@pro.com"
-        android:inputType="textPersonName" />
+        android:inputType="textEmailAddress" />
 
     <TextView
         android:id="@+id/passwordLabel"
