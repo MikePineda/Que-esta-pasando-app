@@ -20,7 +20,8 @@
             android:name=".MainWall"
             android:label="@string/title_activity_main_wall"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".WriteMessage"></activity>
+        <activity android:name=".WriteMessage" />
+        <activity android:name=".SearchFriend"></activity>
     </application>
 
 </manifest>
