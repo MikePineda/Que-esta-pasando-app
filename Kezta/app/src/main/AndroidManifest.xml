@@ -22,6 +22,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".WriteMessage" />
         <activity android:name=".SearchFriend"></activity>
+        <activity android:name=".FriendListActivity" />
+        <activity android:name=".AddFriendActivity"></activity>
     </application>
 
 </manifest>
