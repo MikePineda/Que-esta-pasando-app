@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,7 +12,11 @@
         android:layout_height="79dp"
         app:srcCompat="@drawable/fots"
         tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="216dp" />
+        tools:layout_editor_absoluteY="216dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/imageView4"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="45dp" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -20,7 +24,10 @@
         android:layout_height="79dp"
         app:srcCompat="@drawable/fots"
         tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="124dp" />
+        tools:layout_editor_absoluteY="124dp"
+        android:layout_above="@+id/imageView2"
+        android:layout_alignStart="@+id/imageView2"
+        android:layout_marginBottom="53dp" />
 
     <TextView
         android:id="@+id/textView4"
@@ -28,7 +35,10 @@
         android:layout_height="wrap_content"
         android:text="Hector Fox"
         tools:layout_editor_absoluteX="111dp"
-        tools:layout_editor_absoluteY="153dp" />
+        tools:layout_editor_absoluteY="153dp"
+        android:layout_alignBottom="@+id/imageView3"
+        android:layout_toEndOf="@+id/imageView4"
+        android:layout_marginStart="36dp" />
 
     <TextView
         android:id="@+id/textView3"
@@ -36,7 +46,10 @@
         android:layout_height="wrap_content"
         android:text="Miguel Fox Pineda Estrella"
         tools:layout_editor_absoluteX="114dp"
-        tools:layout_editor_absoluteY="247dp" />
+        tools:layout_editor_absoluteY="247dp"
+        android:layout_alignBottom="@+id/imageView4"
+        android:layout_toEndOf="@+id/imageView4"
+        android:layout_marginBottom="29dp" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -44,7 +57,10 @@
         android:layout_height="79dp"
         app:srcCompat="@drawable/fots"
         tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="30dp" />
+        tools:layout_editor_absoluteY="30dp"
+        android:layout_above="@+id/button"
+        android:layout_toStartOf="@+id/textView2"
+        android:layout_marginBottom="51dp" />
 
     <TextView
         android:id="@+id/textView2"
@@ -52,7 +68,10 @@
         android:layout_height="wrap_content"
         android:text="Miguel Fox Pineda Estrella"
         tools:layout_editor_absoluteX="114dp"
-        tools:layout_editor_absoluteY="56dp" />
+        tools:layout_editor_absoluteY="56dp"
+        android:layout_above="@+id/button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="85dp" />
 
     <Button
         android:id="@+id/button"
@@ -63,5 +82,8 @@
         android:text="Añadir compadre"
         app:layout_constraintRight_toRightOf="parent"
         tools:layout_editor_absoluteX="3dp"
-        tools:layout_editor_absoluteY="431dp" />
-</android.support.constraint.ConstraintLayout>
+        tools:layout_editor_absoluteY="431dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="11dp" />
+</android.widget.RelativeLayout>
