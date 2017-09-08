@@ -90,12 +90,12 @@ public class MainWall extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             Intent intent = new Intent();
-            intent.setClass(this, FriendListActivity.class);
+            intent.setClass(this, Profile.class);
             startActivity(intent);
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
             Intent intent = new Intent();
-            intent.setClass(this, AddFriendActivity.class);
+            intent.setClass(this, FriendListActivity.class);
             startActivity(intent);
         }
         /*(else if (id == R.id.nav_slideshow) {
