@@ -14,11 +14,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainWall extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+//Lista de mensajes
+    ListView listView ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +57,80 @@ public class MainWall extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+//////////////////////
+        // Get ListView object from xml
+        listView = (ListView) findViewById(R.id.list);
+
+        // Defined Array values to show in ListView
+        final List<Post> listilla = new ArrayList<Post>();
+        listilla.add(new Post("Rada","mensaje 1"));
+        listilla.add(new Post("Rada","mensaje 2"));
+        listilla.add(new Post("Rada","mensaje 3"));
+        listilla.add(new Post("Rada","mensaje 4"));
+        listilla.add(new Post("Rada","mensaje 5"));
+        listilla.add(new Post("Rada","mensaje 6"));
+        listilla.add(new Post("Rada","mensaje 1"));
+        listilla.add(new Post("Rada","mensaje 2"));
+        listilla.add(new Post("Rada","mensaje 3"));
+        listilla.add(new Post("Rada","mensaje 4"));
+        listilla.add(new Post("Rada","mensaje 5"));
+        listilla.add(new Post("Rada","mensaje 6"));
+        listilla.add(new Post("Rada","mensaje 1"));
+        listilla.add(new Post("Rada","mensaje 2"));
+        listilla.add(new Post("Rada","mensaje 3"));
+        listilla.add(new Post("Rada","mensaje 4"));
+        listilla.add(new Post("Rada","mensaje 5"));
+        listilla.add(new Post("Rada","mensaje 6"));
+
+
+
+
+        // Define a new Adapter
+        // First parameter - Context
+        // Second parameter - Layout for the row
+        // Third parameter - ID of the TextView to which the data is written
+        // Forth - the Array of data
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_2, android.R.id.text1, listilla) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView text1 = (TextView) view.findViewById(android.R.id.text1);
+                TextView text2 = (TextView) view.findViewById(android.R.id.text2);
+
+                text1.setText(listilla.get(position).getNombre());
+                text2.setText(listilla.get(position).getMensaje());
+                return view;
+            }
+        };
+
+        // Assign adapter to ListView
+        listView.setAdapter(adapter);
+
+        // ListView Item Click Listener
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                // ListView Clicked item index
+                int itemPosition     = position;
+
+                // ListView Clicked item value
+                Post  itemValue    = (Post) listView.getItemAtPosition(position);
+
+                // Show Alert
+                Toast.makeText(getApplicationContext(),
+                        "Position :"+itemPosition+"  ListItem : " +itemValue.getMensaje() , Toast.LENGTH_LONG)
+                        .show();
+
+            }
+
+        });
+
+
+
     }
 
     @Override
