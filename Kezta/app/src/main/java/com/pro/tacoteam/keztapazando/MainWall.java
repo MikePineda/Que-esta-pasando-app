@@ -28,6 +28,11 @@ public class MainWall extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 //Lista de mensajes
     ListView listView ;
+    public static List<Post> listilla;
+
+    public static void addMessage(String user, String message){
+        listilla.add(new Post(user,message));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +66,8 @@ public class MainWall extends AppCompatActivity
 //////////////////////
         // Get ListView object from xml
         listView = (ListView) findViewById(R.id.list);
-
         // Defined Array values to show in ListView
-        final List<Post> listilla = new ArrayList<Post>();
+        listilla = new ArrayList<Post>();
         listilla.add(new Post("Rada","mensaje 1"));
         listilla.add(new Post("Rada","mensaje 2"));
         listilla.add(new Post("Rada","mensaje 3"));
