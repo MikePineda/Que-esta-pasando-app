@@ -68,24 +68,14 @@ public class MainWall extends AppCompatActivity
         listView = (ListView) findViewById(R.id.list);
         // Defined Array values to show in ListView
         listilla = new ArrayList<Post>();
+        listilla.add(new Post("dummy","dummy"));
         listilla.add(new Post("Rada","mensaje 1"));
         listilla.add(new Post("Rada","mensaje 2"));
         listilla.add(new Post("Rada","mensaje 3"));
         listilla.add(new Post("Rada","mensaje 4"));
         listilla.add(new Post("Rada","mensaje 5"));
         listilla.add(new Post("Rada","mensaje 6"));
-        listilla.add(new Post("Rada","mensaje 1"));
-        listilla.add(new Post("Rada","mensaje 2"));
-        listilla.add(new Post("Rada","mensaje 3"));
-        listilla.add(new Post("Rada","mensaje 4"));
-        listilla.add(new Post("Rada","mensaje 5"));
-        listilla.add(new Post("Rada","mensaje 6"));
-        listilla.add(new Post("Rada","mensaje 1"));
-        listilla.add(new Post("Rada","mensaje 2"));
-        listilla.add(new Post("Rada","mensaje 3"));
-        listilla.add(new Post("Rada","mensaje 4"));
-        listilla.add(new Post("Rada","mensaje 5"));
-        listilla.add(new Post("Rada","mensaje 6"));
+
 
 
 
@@ -128,6 +118,20 @@ public class MainWall extends AppCompatActivity
                 Toast.makeText(getApplicationContext(),
                         "Position :"+itemPosition+"  ListItem : " +itemValue.getMensaje() , Toast.LENGTH_LONG)
                         .show();
+
+                Intent myIntent = new Intent(getApplicationContext(), DescripcionMensajeActivity.class);
+                //To pass:
+                //
+                //intent.putExtra("MyClass", obj);
+                // To retrieve object in second Activity
+                //   getIntent().getSerializableExtra("MyClass");
+                myIntent.putExtra("user",itemValue.getNombre());
+                myIntent.putExtra("mensaje", itemValue.getMensaje());
+                myIntent.putExtra("cosaExtra1", "correillo@pro.com");
+                myIntent.putExtra("cosaExtra2", "cosa extra 2");
+                startActivity(myIntent);
+
+
 
             }
 
@@ -178,6 +182,8 @@ public class MainWall extends AppCompatActivity
         if (id == R.id.nav_camera) {
             Intent intent = new Intent();
             intent.setClass(this, Profile.class);
+            intent.putExtra("user",Login.getLoggedUser());
+            intent.putExtra("cosaExtra1", "correillo@pro.com");
             startActivity(intent);
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {

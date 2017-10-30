@@ -3,6 +3,7 @@ package com.pro.tacoteam.keztapazando;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.EditText;
 
 public class Profile extends AppCompatActivity {
 
@@ -11,5 +12,18 @@ public class Profile extends AppCompatActivity {
         Intent intent = getIntent();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        String user = intent.getStringExtra("user");
+        String mail = intent.getStringExtra("cosaExtra1");
+
+        EditText profileName = (EditText) findViewById(R.id.editText2);
+        EditText correo = (EditText) findViewById(R.id.editText6);
+        profileName.setKeyListener(null);
+        correo.setKeyListener(null);
+
+        profileName.setText(user);
+
+        correo.setText(mail);
+
     }
 }
