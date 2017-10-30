@@ -19,7 +19,8 @@ public class WriteMessage extends AppCompatActivity {
     }
 
     public void publicarMensaje(View view){
-        MainWall.addMessage("Yo",mensaje.getText().toString());
+        //Mensajes dummy, aqui debemos mandarlo a la api para que lo guarde en la bd! y ya en el wall activity traer los datillos
+        MainWall.addMessage(Login.getLoggedUser(),mensaje.getText().toString());
         Toast.makeText(getApplicationContext(),"Mensaje publicado", Toast.LENGTH_SHORT).show();
         this.finish();
     }

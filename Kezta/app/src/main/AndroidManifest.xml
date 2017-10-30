@@ -24,7 +24,8 @@
         <activity android:name=".SearchFriend" />
         <activity android:name=".FriendListActivity" />
         <activity android:name=".AddFriendActivity" />
-        <activity android:name=".Profile"></activity>
+        <activity android:name=".Profile" />
+        <activity android:name=".DescripcionMensajeActivity"></activity>
     </application>
 
 </manifest>
