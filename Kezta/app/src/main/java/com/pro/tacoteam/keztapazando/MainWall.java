@@ -22,18 +22,47 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainWall extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 //Lista de mensajes
-    ListView listView ;
+  //  ListView listView ;
     public static List<Post> listilla;
+
+    ///////////////////TUTO CUSTOM LISTVIEW
+    ListView list;
+
+    Integer[] imageId = {
+            R.drawable.fots,
+            R.drawable.fots,
+            R.drawable.fots,
+            R.drawable.fots,
+            R.drawable.fots,
+            R.drawable.fots,
+            R.drawable.fots
+
+    };
+
+    //////////////
 
     public static void addMessage(String user, String message){
         listilla.add(new Post(user,message));
+
     }
 
+    /**
+     * Para actualizar la lista de mensajes cada que publicas uno!!
+     */
+    @Override
+    public void onResume()
+    {  // After a pause OR at startup
+        super.onResume();
+        CustomList adapter = new CustomList(MainWall.this,listilla,imageId);
+        list=(ListView)findViewById(R.id.list);
+        list.setAdapter(adapter);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
@@ -41,6 +70,7 @@ public class MainWall extends AppCompatActivity
         setContentView(R.layout.activity_main_wall);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -64,8 +94,9 @@ public class MainWall extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 //////////////////////
+
         // Get ListView object from xml
-        listView = (ListView) findViewById(R.id.list);
+       // listView = (ListView) findViewById(R.id.list);
         // Defined Array values to show in ListView
         listilla = new ArrayList<Post>();
         listilla.add(new Post("dummy","dummy"));
@@ -78,7 +109,7 @@ public class MainWall extends AppCompatActivity
 
 
 
-
+  /*
 
         // Define a new Adapter
         // First parameter - Context
@@ -127,7 +158,7 @@ public class MainWall extends AppCompatActivity
                 //   getIntent().getSerializableExtra("MyClass");
                 myIntent.putExtra("user",itemValue.getNombre());
                 myIntent.putExtra("mensaje", itemValue.getMensaje());
-                myIntent.putExtra("cosaExtra1", "correillo@pro.com");
+                myIntent.putExtra("cosaExtra1", Login.getLoggedUser() + "@gmail.com");
                 myIntent.putExtra("cosaExtra2", "cosa extra 2");
                 startActivity(myIntent);
 
@@ -136,8 +167,36 @@ public class MainWall extends AppCompatActivity
             }
 
         });
+*/
+//////////////CUSTOM LIST TUTO CON IMG
+        //array dummy
+      //  String [] stringArray = new String[listilla.size()+50];
+        CustomList adapter = new CustomList(MainWall.this,listilla,imageId);
+        list=(ListView)findViewById(R.id.list);
+        list.setAdapter(adapter);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                Toast.makeText(MainWall.this, "You Clicked at " +listilla.get(position).getMensaje(), Toast.LENGTH_SHORT).show();
+                Intent myIntent = new Intent(getApplicationContext(), DescripcionMensajeActivity.class);
+                //To pass:
+                //
+                //intent.putExtra("MyClass", obj);
+                // To retrieve object in second Activity
+                //   getIntent().getSerializableExtra("MyClass");
+                myIntent.putExtra("user",listilla.get(position).getNombre());
+                myIntent.putExtra("mensaje", listilla.get(position).getMensaje());
+                myIntent.putExtra("cosaExtra1", listilla.get(position).getNombre() + "@gmail.com");
+                myIntent.putExtra("cosaExtra2", "cosa extra 2");
+                startActivity(myIntent);
+            }
+        });
 
 
+
+        ////////////////
 
     }
 
@@ -167,6 +226,7 @@ public class MainWall extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            this.finish();
             return true;
         }
 
@@ -183,7 +243,7 @@ public class MainWall extends AppCompatActivity
             Intent intent = new Intent();
             intent.setClass(this, Profile.class);
             intent.putExtra("user",Login.getLoggedUser());
-            intent.putExtra("cosaExtra1", "correillo@pro.com");
+            intent.putExtra("cosaExtra1", Login.getLoggedUser() + "@gmail.com");
             startActivity(intent);
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {

@@ -3,6 +3,7 @@
     package="com.pro.tacoteam.keztapazando">
 
     <application
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -27,5 +28,6 @@
         <activity android:name=".Profile" />
         <activity android:name=".DescripcionMensajeActivity"></activity>
     </application>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
 </manifest>
