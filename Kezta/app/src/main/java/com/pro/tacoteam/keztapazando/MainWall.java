@@ -229,6 +229,9 @@ public class MainWall extends AppCompatActivity
             this.finish();
             return true;
         }
+        if(id == R.id.recargarLista){
+            onResume();
+        }
 
         return super.onOptionsItemSelected(item);
     }
