@@ -44,7 +44,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/editText2"
         android:layout_marginTop="19dp"
-        android:text="TextView" />
+        android:text="Correo" />
 
     <EditText
         android:id="@+id/editText6"
@@ -57,12 +57,34 @@
         android:inputType="textPersonName"
         android:text="mikepineda97@gmail.com" />
 
-    <TextView
-        android:id="@+id/profilePost"
+    <Button
+        android:id="@+id/saveProfileInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="27dp"
+        android:onClick="saveInfo"
+        android:text="Guardar información" />
+
+    <EditText
+        android:id="@+id/pwUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/saveProfileInfo"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/editText6"
-        android:layout_marginTop="21dp"
-        android:text="Lista de posts hechos por ti:" />
+        android:layout_marginBottom="15dp"
+        android:ems="10"
+        android:inputType="textPersonName|textPassword"
+        android:text="password del usuario" />
+
+    <TextView
+        android:id="@+id/labelpw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/pwUser"
+        android:layout_alignParentStart="true"
+        android:text="Contraseña" />
+
 </android.widget.RelativeLayout>

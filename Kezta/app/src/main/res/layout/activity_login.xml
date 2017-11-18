@@ -22,7 +22,7 @@
         android:layout_height="72dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="24dp"
-        android:src="@drawable/fots" />
+        android:src="@drawable/logo" />
 
     <!-- Email Label -->
 

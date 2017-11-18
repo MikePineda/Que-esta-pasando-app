@@ -70,4 +70,12 @@
         android:layout_marginEnd="17dp"
         android:onClick="goBack"
         android:text="Ok" />
+
+    <TextView
+        android:id="@+id/dateMsgDsc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/authorMail"
+        android:text="Fecha que el men escribio el mensaje" />
 </android.widget.RelativeLayout>

@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 public class MainWall extends AppCompatActivity
@@ -48,7 +49,7 @@ public class MainWall extends AppCompatActivity
     //////////////
 
     public static void addMessage(String user, String message){
-        listilla.add(new Post(user,message));
+        listilla.add(new Post(user,message, new Date()));
 
     }
 
@@ -99,13 +100,13 @@ public class MainWall extends AppCompatActivity
        // listView = (ListView) findViewById(R.id.list);
         // Defined Array values to show in ListView
         listilla = new ArrayList<Post>();
-        listilla.add(new Post("dummy","dummy"));
-        listilla.add(new Post("Rada","mensaje 1"));
-        listilla.add(new Post("Rada","mensaje 2"));
-        listilla.add(new Post("Rada","mensaje 3"));
-        listilla.add(new Post("Rada","mensaje 4"));
-        listilla.add(new Post("Rada","mensaje 5"));
-        listilla.add(new Post("Rada","mensaje 6"));
+        listilla.add(new Post("dummy","dummy", new Date()));
+        listilla.add(new Post("Rada","mensaje 1", new Date()));
+        listilla.add(new Post("Rada","mensaje 2", new Date()));
+        listilla.add(new Post("Rada","mensaje 3", new Date()));
+        listilla.add(new Post("Rada","mensaje 4", new Date()));
+        listilla.add(new Post("Rada","mensaje 5", new Date()));
+        listilla.add(new Post("Rada","mensaje 6", new Date()));
 
 
 
@@ -189,7 +190,7 @@ public class MainWall extends AppCompatActivity
                 myIntent.putExtra("user",listilla.get(position).getNombre());
                 myIntent.putExtra("mensaje", listilla.get(position).getMensaje());
                 myIntent.putExtra("cosaExtra1", listilla.get(position).getNombre() + "@gmail.com");
-                myIntent.putExtra("cosaExtra2", "cosa extra 2");
+                myIntent.putExtra("fecha", listilla.get(position).getDate().toString());
                 startActivity(myIntent);
             }
         });

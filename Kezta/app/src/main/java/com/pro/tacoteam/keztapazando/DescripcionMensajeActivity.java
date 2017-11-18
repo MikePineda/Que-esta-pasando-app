@@ -7,12 +7,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.Date;
+
 public class DescripcionMensajeActivity extends AppCompatActivity {
 
     private EditText author;
     private EditText mail;
     private TextView message;
-
+    private TextView dateOfMsg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +23,7 @@ public class DescripcionMensajeActivity extends AppCompatActivity {
         String user = intent.getStringExtra("user");
         String mensaje = intent.getStringExtra("mensaje");
         String cosaExtra1 = intent.getStringExtra("cosaExtra1");
-        String cosaExtra2 = intent.getStringExtra("cosaExtra2");
+        String cosaExtra2 = intent.getStringExtra("fecha");
 
         author = (EditText) findViewById(R.id.author);
         author.setKeyListener(null);
@@ -31,9 +33,11 @@ public class DescripcionMensajeActivity extends AppCompatActivity {
 
         message = (TextView) findViewById(R.id.messagedescr);
 
+        dateOfMsg = (TextView) findViewById(R.id.dateMsgDsc);
         author.setText(user);
         mail.setText(cosaExtra1);
         message.setText(mensaje);
+        dateOfMsg.setText(cosaExtra2);
     }
 
 

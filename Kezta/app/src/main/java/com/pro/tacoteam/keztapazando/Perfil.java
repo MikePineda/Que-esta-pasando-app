@@ -16,29 +16,12 @@ public class Perfil {
     public Perfil(){
     }
 
-    public Perfil(String id, String nombre, String username, String password, String correo) {
-        this.id = id;
-        this.nombre = nombre;
+    public Perfil(String username, String password, String correo) {
         this.username = username;
         this.password = password;
         this.correo = correo;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
 
     public String getUsername() {
         return username;
