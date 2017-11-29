@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <!-- Row 1 with single column -->
+    <TableRow
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:gravity="center_horizontal">
+
+
+        <TextView
+            android:id="@+id/friendsListName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_span="3"
+            android:padding="18dip"
+            android:text="Nombre de amigo"
+            android:textColor="#000"
+            android:textSize="18dp" />
+
+
+    </TableRow>
+
+    <!-- Row 2 with 2 columns -->
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <ImageView
+            android:id="@+id/friendsListPhoto"
+            android:layout_width="127dp"
+            android:layout_height="121dp"
+            android:contentDescription="foto del amigo" />
+
+        <TextView
+            android:id="@+id/friendsListMail"
+            android:text="Correo del amigo"
+            android:layout_weight="1"
+            android:textColor="#000000"
+            android:padding="20dip" android:gravity="center"/>
+
+
+
+    </TableRow>
+</TableLayout>
