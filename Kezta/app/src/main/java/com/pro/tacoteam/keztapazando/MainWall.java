@@ -31,8 +31,6 @@ public class MainWall extends AppCompatActivity
 //Lista de mensajes
   //  ListView listView ;
     public static List<Post> listilla;
-
-    ///////////////////TUTO CUSTOM LISTVIEW
     ListView list;
 
     Integer[] imageId = {
@@ -46,7 +44,6 @@ public class MainWall extends AppCompatActivity
 
     };
 
-    //////////////
 
     public static void addMessage(String user, String message){
         listilla.add(new Post(user,message, new Date()));
@@ -64,6 +61,8 @@ public class MainWall extends AppCompatActivity
         list=(ListView)findViewById(R.id.list);
         list.setAdapter(adapter);
     }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
