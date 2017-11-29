@@ -21,7 +21,7 @@ public class Register extends AppCompatActivity {
     private ProgressDialog pDialog;
     private String URL = "http://192.168.15.15:5000/";
     private String TAG = Register.class.getSimpleName();
-
+    private boolean validation = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +66,14 @@ public class Register extends AppCompatActivity {
 
             // Making a request to url and getting response
             String urlPro = URL + "addUser";
-            sh.addUser(urlPro,nombre.getText().toString(),correo.getText().toString(),password.getText().toString());
+            if(nombre.getText().toString().trim().length()>0 &&
+                    correo.getText().toString().trim().length()>0 &&
+                    password.getText().toString().trim().length()>0){
+                validation =true;
+            }
+            if(validation){
+                sh.addUser(urlPro,nombre.getText().toString(),correo.getText().toString(),password.getText().toString());
+            }
             Log.e(TAG, "Exito ");
 
             return null;
@@ -76,8 +83,14 @@ public class Register extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
             // Dismiss the progress dialog
-            Toast.makeText(getApplicationContext(),"Te has registrado exitosamente", Toast.LENGTH_SHORT).show();
-            ((Register)mContext).finish();
+            if(validation){
+                Toast.makeText(getApplicationContext(),"Te has registrado exitosamente", Toast.LENGTH_SHORT).show();
+                ((Register)mContext).finish();
+
+            }else{
+                Toast.makeText(getApplicationContext(),"Error, los campos no pueden estar vacios", Toast.LENGTH_SHORT).show();
+
+            }
 
         }
 
