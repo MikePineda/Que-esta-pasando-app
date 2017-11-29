@@ -45,8 +45,14 @@ public class CustomList extends ArrayAdapter<String>{
         TextView txtMsg = (TextView) rowView.findViewById(R.id.txt2);
         //asignando valor
         ImageView imageView = (ImageView) rowView.findViewById(R.id.img);
-        txtTitle.setText(post.get(position).getNombre().toString());
-        txtMsg.setText(post.get(position).getMensaje().toString());
+        try{
+            txtTitle.setText(post.get(position).getNombre().toString());
+            txtMsg.setText(post.get(position).getMensaje().toString());
+        }catch(IndexOutOfBoundsException e){
+            txtTitle.setText("error");
+            txtMsg.setText("error");
+        }
+
         imageView.setImageResource(Integer.parseInt("2131165281"));
         return rowView;
     }

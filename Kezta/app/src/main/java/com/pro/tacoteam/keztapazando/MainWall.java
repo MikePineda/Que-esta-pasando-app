@@ -1,10 +1,13 @@
 package com.pro.tacoteam.keztapazando;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,10 +24,20 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+
+import static com.pro.tacoteam.keztapazando.Login.getLoggedUser;
 
 public class MainWall extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -43,7 +56,11 @@ public class MainWall extends AppCompatActivity
             R.drawable.fots
 
     };
-
+    private ProgressDialog pDialog;
+    private String URL = "http://192.168.15.15:5000/";
+    private String TAG = MainWall.class.getSimpleName();
+    DateFormat formatter = new SimpleDateFormat("E, W MMM y hh:mm:ss zzz", Locale.ENGLISH);
+    CustomList adapter;
 
     public static void addMessage(String user, String message){
         listilla.add(new Post(user,message, new Date()));
@@ -57,9 +74,9 @@ public class MainWall extends AppCompatActivity
     public void onResume()
     {  // After a pause OR at startup
         super.onResume();
-        CustomList adapter = new CustomList(MainWall.this,listilla,imageId);
-        list=(ListView)findViewById(R.id.list);
-        list.setAdapter(adapter);
+        listilla.clear();
+        new GetPosts().execute();
+        //new GetPosts().onPostExecute();
     }
 
 
@@ -70,6 +87,8 @@ public class MainWall extends AppCompatActivity
         setContentView(R.layout.activity_main_wall);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        list=(ListView)findViewById(R.id.list);
+        listilla = new ArrayList<Post>();
 
 
        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -93,86 +112,8 @@ public class MainWall extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-//////////////////////
 
-        // Get ListView object from xml
-       // listView = (ListView) findViewById(R.id.list);
-        // Defined Array values to show in ListView
-        listilla = new ArrayList<Post>();
-        listilla.add(new Post("dummy","dummy", new Date()));
-        listilla.add(new Post("Rada","mensaje 1", new Date()));
-        listilla.add(new Post("Rada","mensaje 2", new Date()));
-        listilla.add(new Post("Rada","mensaje 3", new Date()));
-        listilla.add(new Post("Rada","mensaje 4", new Date()));
-        listilla.add(new Post("Rada","mensaje 5", new Date()));
-        listilla.add(new Post("Rada","mensaje 6", new Date()));
-
-
-
-  /*
-
-        // Define a new Adapter
-        // First parameter - Context
-        // Second parameter - Layout for the row
-        // Third parameter - ID of the TextView to which the data is written
-        // Forth - the Array of data
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_2, android.R.id.text1, listilla) {
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                View view = super.getView(position, convertView, parent);
-                TextView text1 = (TextView) view.findViewById(android.R.id.text1);
-                TextView text2 = (TextView) view.findViewById(android.R.id.text2);
-
-                text1.setText(listilla.get(position).getNombre());
-                text2.setText(listilla.get(position).getMensaje());
-                return view;
-            }
-        };
-
-        // Assign adapter to ListView
-        listView.setAdapter(adapter);
-
-        // ListView Item Click Listener
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-
-                // ListView Clicked item index
-                int itemPosition     = position;
-
-                // ListView Clicked item value
-                Post  itemValue    = (Post) listView.getItemAtPosition(position);
-
-                // Show Alert
-                Toast.makeText(getApplicationContext(),
-                        "Position :"+itemPosition+"  ListItem : " +itemValue.getMensaje() , Toast.LENGTH_LONG)
-                        .show();
-
-                Intent myIntent = new Intent(getApplicationContext(), DescripcionMensajeActivity.class);
-                //To pass:
-                //
-                //intent.putExtra("MyClass", obj);
-                // To retrieve object in second Activity
-                //   getIntent().getSerializableExtra("MyClass");
-                myIntent.putExtra("user",itemValue.getNombre());
-                myIntent.putExtra("mensaje", itemValue.getMensaje());
-                myIntent.putExtra("cosaExtra1", Login.getLoggedUser() + "@gmail.com");
-                myIntent.putExtra("cosaExtra2", "cosa extra 2");
-                startActivity(myIntent);
-
-
-
-            }
-
-        });
-*/
-//////////////CUSTOM LIST TUTO CON IMG
-        //array dummy
-      //  String [] stringArray = new String[listilla.size()+50];
-        CustomList adapter = new CustomList(MainWall.this,listilla,imageId);
-        list=(ListView)findViewById(R.id.list);
+        adapter = new CustomList(MainWall.this,listilla,imageId);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -245,8 +186,8 @@ public class MainWall extends AppCompatActivity
         if (id == R.id.nav_camera) {
             Intent intent = new Intent();
             intent.setClass(this, Profile.class);
-            intent.putExtra("user",Login.getLoggedUser());
-            intent.putExtra("cosaExtra1", Login.getLoggedUser() + "@gmail.com");
+            intent.putExtra("user", getLoggedUser().getUsername());
+            intent.putExtra("cosaExtra1", getLoggedUser().getCorreo());
             startActivity(intent);
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
@@ -268,4 +209,109 @@ public class MainWall extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /**
+     * Async task class to get json by making HTTP call
+     */
+    private class GetPosts extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // Showing progress dialog
+            // http://192.168.15.15:5000/getPostsByUser?username=rada
+            pDialog = new ProgressDialog(MainWall.this);
+            pDialog.setMessage("Obteniendo publicaciones de tus amigos...");
+            pDialog.setCancelable(true);
+            pDialog.show();
+            listilla = new ArrayList<Post>();
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+            HttpHandler sh = new HttpHandler();
+            /////////////////PRUEBA ENCONTRAR AMIGOS
+            List<String> amigos = new ArrayList<>();
+            String urlFriends = URL + "getFriendsOfUser?username=" + getLoggedUser().getUsername() ;
+            String friendsJson = sh.makeServiceCall(urlFriends);
+            Log.e(TAG, "Response from url: " + friendsJson);
+            if (friendsJson != null) {
+                try {
+                    JSONArray jsonarrayAmigos = new JSONArray(friendsJson);
+                    //Parseando a traves del JSON
+                    for (int i = 0; i < jsonarrayAmigos.length(); i++) {
+                        JSONObject jsonobject = jsonarrayAmigos.getJSONObject(i);
+                        String amigo = jsonobject.getString("username2");
+                        amigos.add(amigo);
+                    }
+                    amigos.add(getLoggedUser().getUsername());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+                Log.e(TAG,"Es amigo de: " + amigos.toString());
+
+            /////////////////////
+            // Making a request to url and getting response
+            for(int count=0;count< amigos.size();count++) {
+                String urlPro = URL + "getPostsByUser?username=" + amigos.get(count);
+                String jsonStr = sh.makeServiceCall(urlPro);
+                Log.e(TAG, "Response from url: " + jsonStr);
+                if (jsonStr != null) {
+                    try {
+                        JSONArray jsonarray = new JSONArray(jsonStr);
+                        //Parseando a traves del JSON
+                        for (int i = 0; i < jsonarray.length(); i++) {
+                            JSONObject jsonobject = jsonarray.getJSONObject(i);
+                            String username = jsonobject.getString("username");
+                            String date = jsonobject.getString("date");
+                            String message = jsonobject.getString("message");
+                            listilla.add(new Post(username, message, formatter.parse(date)));
+                        }
+
+                    } catch (JSONException e) {
+                        Log.e(TAG, "json exception");
+                    } catch (ParseException e) {
+                        Log.e(TAG, "parse exception");
+                    }
+                } else {
+                    Log.e(TAG, "Couldn't get json from server.");
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(),
+                                    "Couldn't get json from server. Check LogCat for possible errors!",
+                                    Toast.LENGTH_LONG)
+                                    .show();
+                        }
+                    });
+
+                }
+            }//fin del for
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            // Dismiss the progress dialog
+            if (pDialog.isShowing()){
+                pDialog.dismiss();
+
+            }
+
+            adapter = new CustomList(MainWall.this,listilla,imageId);
+            list.setAdapter(adapter);
+        }
+
+    }
+
+
+
+    ////////////////////////
+
+
 }

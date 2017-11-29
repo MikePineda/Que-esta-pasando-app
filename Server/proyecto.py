@@ -5,7 +5,7 @@ import requests
 import json
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\Android\Projects\proyecto-final\Server\compas.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///D:\GitLab\Proyecto-Final\Server\compas.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -118,4 +118,4 @@ def addFriendToUser():
         return "Error"
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host= '0.0.0.0')
