@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.pro.tacoteam.keztapazando.DescripcionMensajeActivity">
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fots"
+        android:layout_marginEnd="224dp"
+        android:layout_marginBottom="368dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:id="@+id/author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="quien escribio el msj"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:id="@+id/authorMail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView6"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="18dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="correo del autor" />
+
+    <TextView
+        android:id="@+id/labelMsj"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/authorMail"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="23dp"
+        android:text="Mensaje:" />
+
+    <TextView
+        android:id="@+id/messagedescr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/labelMsj"
+        android:layout_marginTop="19dp"
+        android:text="mensaje que escribio"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/backDescr" />
+
+    <Button
+        android:id="@+id/backDescr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="17dp"
+        android:onClick="goBack"
+        android:text="Ok" />
+
+    <TextView
+        android:id="@+id/dateMsgDsc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/authorMail"
+        android:text="Fecha que el men escribio el mensaje" />
+</android.widget.RelativeLayout>

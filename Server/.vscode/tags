@@ -1,0 +1,28 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Compa	../proyecto.py	/^class Compa(db.Model):$/;"	kind:class	line:25
+Flask	../proyecto.py	/^from flask import Flask, abort, request, jsonify$/;"	kind:namespace	line:1
+Post	../proyecto.py	/^class Post(db.Model):$/;"	kind:class	line:20
+SQLAlchemy	../proyecto.py	/^from flask_sqlalchemy import SQLAlchemy$/;"	kind:namespace	line:2
+User	../proyecto.py	/^class User(db.Model):$/;"	kind:class	line:12
+__repr__	../proyecto.py	/^    def __repr__(self):$/;"	kind:member	line:17
+abort	../proyecto.py	/^from flask import Flask, abort, request, jsonify$/;"	kind:namespace	line:1
+app	../proyecto.py	/^app = Flask(__name__)$/;"	kind:variable	line:6
+date	../proyecto.py	/^    date = db.Column(db.DateTime)$/;"	kind:variable	line:23
+db	../proyecto.py	/^db = SQLAlchemy(app)$/;"	kind:variable	line:9
+email	../proyecto.py	/^    email = db.Column(db.String(120), nullable=True)$/;"	kind:variable	line:14
+json	../proyecto.py	/^import json$/;"	kind:namespace	line:4
+jsonify	../proyecto.py	/^from flask import Flask, abort, request, jsonify$/;"	kind:namespace	line:1
+message	../proyecto.py	/^    message = db.Column(db.String(120), nullable=True)$/;"	kind:variable	line:22
+password	../proyecto.py	/^    password = db.Column(db.String(80), unique=True, nullable=True)$/;"	kind:variable	line:15
+proyecto.py	../proyecto.py	1;"	kind:file	line:1
+request	../proyecto.py	/^from flask import Flask, abort, request, jsonify$/;"	kind:namespace	line:1
+requests	../proyecto.py	/^import requests$/;"	kind:namespace	line:3
+username	../proyecto.py	/^    username = db.Column(db.String(80), db.ForeignKey('user.username'), nullable=True)$/;"	kind:variable	line:21
+username	../proyecto.py	/^    username = db.Column(db.String(80), primary_key=True)$/;"	kind:variable	line:13
+username1	../proyecto.py	/^    username1 = db.Column(db.String(80), db.ForeignKey('user.username'), nullable=True)$/;"	kind:variable	line:26
+username2	../proyecto.py	/^    username2 = db.Column(db.String(80), db.ForeignKey('user.username'), nullable=True)$/;"	kind:variable	line:27
