@@ -57,7 +57,7 @@ public class MainWall extends AppCompatActivity
 
     };
     private ProgressDialog pDialog;
-    private String URL = "http://192.168.15.15:5000/";
+    private String URL = "http://10.76.13.147:5000/";
     private String TAG = MainWall.class.getSimpleName();
     DateFormat formatter = new SimpleDateFormat("E, W MMM y hh:mm:ss zzz", Locale.ENGLISH);
     CustomList adapter;

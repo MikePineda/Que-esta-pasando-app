@@ -41,7 +41,7 @@ public class FriendListActivity extends AppCompatActivity {
     };
 
     private ProgressDialog pDialog;
-    private String URL = "http://192.168.15.15:5000/";
+    private String URL = "http://10.76.13.147:5000/";
     private String TAG = FriendListActivity.class.getSimpleName();
     CustomListFriends adapter;
 

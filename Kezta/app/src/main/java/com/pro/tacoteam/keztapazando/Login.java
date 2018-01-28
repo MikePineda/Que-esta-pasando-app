@@ -21,7 +21,7 @@ public class Login extends AppCompatActivity {
     private EditText username;
     private  EditText password;
     private  static Perfil loggedUser;
-    private String URL = "http://192.168.15.15:5000/";
+    private String URL = "http://10.76.13.147:5000/";
     private ProgressDialog pDialog;
 
     private String usernameIngresado;
